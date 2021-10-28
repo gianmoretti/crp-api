@@ -1,0 +1,24 @@
+version: "3.5"
+
+services:
+  crp-db-main:
+    image: postgres:10.7
+    container_name: crp-postgres-main
+    restart: always
+    environment:
+      POSTGRES_USER: crp-db-main-username
+      POSTGRES_PASSWORD: crp-db-main-pwd
+      POSTGRES_DB: crp-db-main
+    ports:
+      - "5422:5432"
+
+  crp-db-test:
+    image: postgres:10.7
+    container_name: crp-postgres-test
+    restart: always
+    environment:
+      POSTGRES_USER: crp-db-test-username
+      POSTGRES_PASSWORD: crp-db-test-pwd
+      POSTGRES_DB: crp-db-test
+    ports:
+      - "5442:5432"

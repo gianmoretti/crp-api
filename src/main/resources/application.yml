@@ -1,0 +1,13 @@
+referralProgram:
+  numberThreshold: 5
+  creditBonus: 10
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5422/crp-db-main
+    username: crp-db-main-username
+    password: crp-db-main-pwd
+
+  flyway:
+    locations: "classpath:db/migration"
+    enabled: true

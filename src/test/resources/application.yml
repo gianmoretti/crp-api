@@ -1,0 +1,23 @@
+referralProgram:
+  numberThreshold: 5
+  creditBonus: 10
+
+server:
+  port: 8082
+
+java:
+  util:
+    logging:
+      manager: org.apache.logging.log4j.jul.LogManager
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5442/crp-db-test
+    username: crp-db-test-username
+    password: crp-db-test-pwd
+
+  jpa:
+    hibernate:
+    #       ddl-auto: update # update, ...
+    #       show-sql: true
+    properties.hibernate.format_sql: true
