@@ -8,9 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReferralRepo extends JpaRepository<Referral, Integer> {
-
 	Optional<Referral> findOneByCode(String code);
 
 	boolean existsByCode(String code);
-
 }

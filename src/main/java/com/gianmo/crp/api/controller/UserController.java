@@ -32,6 +32,12 @@ public class UserController {
 		toUser = userDto -> mapper.map(userDto, AppUser.class);
 	}
 
+	/**
+	 * Save a new app user
+	 *
+	 * @param dto dto representing the new user
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity<AppUserOutputDTO> save(@RequestBody final AppUserInputDTO dto) {
 		final AppUser user = Optional.of(dto).map(toUser).get();
@@ -43,17 +49,35 @@ public class UserController {
 				).map(toUserDto).get());
 	}
 
+	/**
+	 * Find an app user by id
+	 *
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<AppUserOutputDTO> findOne(@PathVariable("id") final int id) {
 		return ResponseEntity.ok(Optional.of(service.findOne(id)).map(toUserDto).get());
 	}
 
+	/**
+	 * Find all the existing app users
+	 *
+	 * @return
+	 */
 	@GetMapping
 	public ResponseEntity<Collection<AppUserOutputDTO>> findAll() {
 		return ResponseEntity
 				.ok(service.findAll().stream().map(toUserDto).collect(Collectors.toSet()));
 	}
 
+	/**
+	 * Update an existing app user
+	 *
+	 * @param id  id of the app user I want to update
+	 * @param dto
+	 * @return
+	 */
 	@PatchMapping("/{id}")
 	public ResponseEntity<AppUserOutputDTO> update(@PathVariable("id") final int id, @RequestBody final AppUserInputDTO dto) {
 		final AppUser user = Optional.of(dto).map(toUser).get();
@@ -61,6 +85,12 @@ public class UserController {
 		return ResponseEntity.ok(Optional.of(service.update(user)).map(toUserDto).get());
 	}
 
+	/**
+	 * Delete an app user
+	 *
+	 * @param id the id of the user I want to delete
+	 * @return
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") final int id) {
 		service.deleteById(id);
