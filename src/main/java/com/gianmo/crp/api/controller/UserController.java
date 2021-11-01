@@ -36,7 +36,7 @@ public class UserController {
 	 * Save a new app user
 	 *
 	 * @param dto dto representing the new user
-	 * @return
+	 * @return the response with the just saved entity
 	 */
 	@PostMapping
 	public ResponseEntity<AppUserOutputDTO> save(@RequestBody final AppUserInputDTO dto) {
@@ -52,8 +52,8 @@ public class UserController {
 	/**
 	 * Find an app user by id
 	 *
-	 * @param id
-	 * @return
+	 * @param id the user id
+	 * @return the response with the asked entity
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<AppUserOutputDTO> findOne(@PathVariable("id") final int id) {
@@ -63,7 +63,7 @@ public class UserController {
 	/**
 	 * Find all the existing app users
 	 *
-	 * @return
+	 * @return the response with all the existing users
 	 */
 	@GetMapping
 	public ResponseEntity<Collection<AppUserOutputDTO>> findAll() {
@@ -75,8 +75,8 @@ public class UserController {
 	 * Update an existing app user
 	 *
 	 * @param id  id of the app user I want to update
-	 * @param dto
-	 * @return
+	 * @param dto the updated values
+	 * @return the response with the just updated entity
 	 */
 	@PatchMapping("/{id}")
 	public ResponseEntity<AppUserOutputDTO> update(@PathVariable("id") final int id, @RequestBody final AppUserInputDTO dto) {
@@ -89,7 +89,7 @@ public class UserController {
 	 * Delete an app user
 	 *
 	 * @param id the id of the user I want to delete
-	 * @return
+	 * @return the response
 	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") final int id) {

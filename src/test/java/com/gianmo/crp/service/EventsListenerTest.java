@@ -4,7 +4,6 @@ import com.gianmo.crp.database.entity.AppUser;
 import com.gianmo.crp.database.entity.Referral;
 import com.gianmo.crp.database.repository.AppUserRepo;
 import com.gianmo.crp.event.ReferralConsumedEvent;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +27,7 @@ class EventsListenerTest {
 
 	@Mock
 	private ReferralService referralService;
+	
 	private AppUser anExistingRefUser;
 	private AppUser aNewUser;
 
@@ -44,10 +44,6 @@ class EventsListenerTest {
 		aNewUser = AppUser.builder()
 				.username("a new user")
 				.build();
-	}
-
-	@AfterEach
-	void tearDown() {
 	}
 
 	@Test

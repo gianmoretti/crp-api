@@ -36,7 +36,7 @@ public class ReferralController {
 	 * Save a new referral
 	 *
 	 * @param dto referral dto
-	 * @return
+	 * @return the response with the just saved entity
 	 */
 	@PostMapping
 	public ResponseEntity<ReferralOutputDTO> save(@RequestBody final ReferralInputDTO dto) {
@@ -47,7 +47,7 @@ public class ReferralController {
 	/**
 	 * Find a referral by id
 	 *
-	 * @param id
+	 * @param id the referral id
 	 * @return referral program related to the input id
 	 */
 	@GetMapping("/{id}")
@@ -82,7 +82,7 @@ public class ReferralController {
 	 *
 	 * @param id  referral id to update
 	 * @param dto fields updated
-	 * @return
+	 * @return the response with the just updated entity
 	 */
 	@PatchMapping("/{id}")
 	public ResponseEntity<ReferralOutputDTO> update(@PathVariable("id") final int id, @RequestBody final ReferralInputDTO dto) {
@@ -94,8 +94,8 @@ public class ReferralController {
 	/**
 	 * Delete referral by id
 	 *
-	 * @param id
-	 * @return
+	 * @param id the referral id
+	 * @return the response
 	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") final int id) {

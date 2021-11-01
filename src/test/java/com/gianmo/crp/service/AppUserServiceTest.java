@@ -5,8 +5,6 @@ import com.gianmo.crp.database.entity.AppUser;
 import com.gianmo.crp.database.entity.Referral;
 import com.gianmo.crp.event.ReferralConsumedEventNotifier;
 import com.gianmo.crp.exception.EntityNotFoundException;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,15 +23,6 @@ class AppUserServiceTest extends PersistedItTest {
 
 	@MockBean
 	private ReferralConsumedEventNotifier referralConsumedEventNotifier;
-
-	@BeforeEach
-	void setUp() {
-	}
-
-	@AfterEach
-	void tearDown() {
-
-	}
 
 	@Test
 	void givenANewUserWithAValidReferralCodeShouldPersistAndPublishAnEvent() {
@@ -59,10 +48,8 @@ class AppUserServiceTest extends PersistedItTest {
 		final AppUser aNewUser = AppUser.builder()
 				.username("another new user")
 				.build();
-		final Exception exception = assertThrows(EntityNotFoundException.class, () -> {
-			appUserService.save(aNewUser,
-					"an invalid referral code");
-		});
+		final Exception exception = assertThrows(EntityNotFoundException.class, () -> appUserService.save(aNewUser,
+				"an invalid referral code"));
 		assertThat(exception.getMessage())
 				.isEqualTo("No [com.gianmo.crp.database.entity.Referral] can be found with code = an invalid referral code");
 		verifyNoInteractions(referralConsumedEventNotifier);
