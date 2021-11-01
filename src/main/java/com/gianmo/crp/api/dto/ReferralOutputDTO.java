@@ -11,4 +11,5 @@ import lombok.experimental.SuperBuilder;
 @ToString(callSuper = true)
 public class ReferralOutputDTO extends ReferralInputDTO {
 	private Integer id;
+	private boolean consumed;
 }

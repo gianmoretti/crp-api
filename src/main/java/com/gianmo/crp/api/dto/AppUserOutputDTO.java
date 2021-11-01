@@ -1,7 +1,6 @@
 package com.gianmo.crp.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.gianmo.crp.database.entity.Referral;
 import lombok.*;
 
 @Data
@@ -12,5 +11,6 @@ import lombok.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AppUserOutputDTO extends AppUserInputDTO {
 	private Integer id;
-	private Referral myReferral;
+	private Integer credit;
+	private String myReferralCode;
 }
