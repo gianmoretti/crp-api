@@ -1,5 +1,6 @@
 package com.gianmo.crp.event;
 
+import com.gianmo.crp.database.entity.AppUser;
 import com.gianmo.crp.database.entity.Referral;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class ReferralConsumedEvent {
+	private final AppUser appUser;
 	private final Referral referral;
 	private final LocalDateTime when;
 }

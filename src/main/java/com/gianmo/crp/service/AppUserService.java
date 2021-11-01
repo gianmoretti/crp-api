@@ -73,4 +73,7 @@ public class AppUserService {
 		repository.deleteById(id);
 	}
 
+	public void deleteAll() {
+		repository.deleteAll();
+	}
 }

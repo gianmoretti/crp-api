@@ -1,6 +1,9 @@
 referralProgram:
   numberThreshold: 5
-  creditBonus: 10
+  creditBonus:
+    referenceUser: 10
+    signedUser: 10
+
 
 server:
   port: 8082

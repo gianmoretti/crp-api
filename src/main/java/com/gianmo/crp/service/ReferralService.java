@@ -68,4 +68,7 @@ public class ReferralService {
 		repository.deleteById(id);
 	}
 
+	public void deleteAll() {
+		repository.deleteAll();
+	}
 }

@@ -19,6 +19,7 @@ public class ReferralConsumedEventNotifier {
 	public void publish(final AppUser user, final Referral referral) {
 		log.debug("A referral code has been successfully used [user={}, referral={} ", user, referral);
 		final ReferralConsumedEvent referralConsumedEvent = ReferralConsumedEvent.builder()
+				.appUser(user)
 				.referral(referral)
 				.when(LocalDateTime.now())
 				.build();

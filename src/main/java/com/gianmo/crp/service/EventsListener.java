@@ -22,8 +22,11 @@ public class EventsListener {
 	@Value("${referralProgram.numberThreshold}")
 	private Integer referralProgramNumberThreshold;
 
-	@Value("${referralProgram.creditBonus}")
-	private Integer referralProgramCreditBonus;
+	@Value("${referralProgram.creditBonus.referenceUser}")
+	private Integer referralProgramCreditBonusReferenceUser;
+
+	@Value("${referralProgram.creditBonus.signedUser}")
+	private Integer referralProgramCreditBonusSignedUser;
 
 	private final AppUserRepo repository;
 	private final ReferralService referralService;
@@ -34,13 +37,18 @@ public class EventsListener {
 		final Referral referral = event.getReferral();
 		notNull(referral, "The passed event.referral should not be null.");
 		if (!referral.isConsumed()) {
+			final AppUser user = event.getAppUser();
+			user.setCredit(Optional.ofNullable(user.getCredit()).orElse(0) + referralProgramCreditBonusSignedUser);
+			repository.save(user);
+
 			final long numberOfReferrals = repository.countByMyReferral(referral);
 			if (numberOfReferrals >= referralProgramNumberThreshold) {
 				referral.setConsumed(Boolean.TRUE);
 				referralService.save(referral);
-				final AppUser user = referral.getAppUser();
-				user.setCredit(Optional.ofNullable(user.getCredit()).orElse(0) + referralProgramCreditBonus);
-				repository.save(user);
+
+				final AppUser refUser = referral.getAppUser();
+				refUser.setCredit(Optional.ofNullable(refUser.getCredit()).orElse(0) + referralProgramCreditBonusReferenceUser);
+				repository.save(refUser);
 			}
 		}
 	}
